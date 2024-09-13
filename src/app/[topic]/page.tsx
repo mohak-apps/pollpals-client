@@ -11,7 +11,7 @@ interface PageProps {
 const Page = async ({ params }: PageProps) => {
 
   const { topic } = params;
-  // [topic] => ex. redis
+  // [topic] => ex. Aru [member, score, member, score........]
   // zrange will return [redis, 3, is, 5, great, 9, nice: 2]
   const initialData = await redis.zrange(`room:${topic}`, 0, 49, {
     withScores: true,

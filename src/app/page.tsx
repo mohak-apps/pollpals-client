@@ -32,7 +32,7 @@ export default async function Home() {
             <TopicCreator />
             <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
               <div className="flex flex-col gap-1 justify-between items-center sm:items-start">
-                <div className="flex gap-0.5">
+                <div className="flex gap-0.5 self-center">
                   <Star className="h-4 w-4 text-green-600 fill-green-600" />
                   <Star className="h-4 w-4 text-green-600 fill-green-600" />
                   <Star className="h-4 w-4 text-green-600 fill-green-600" />

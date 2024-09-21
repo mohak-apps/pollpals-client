@@ -35,24 +35,26 @@ function wordFreq(text: string): { text: string; value: number }[] {
 
 export const submitComment = async ({
   comment,
-  topicName,
+  topic,
 }: {
   comment: string;
-  topicName: string;
+  topic: string;
 }) => {
-  const words = wordFreq(comment); // words will be [{ text: redis, value: 1}, { text: is, value: 1}]
+  const words = wordFreq(comment); // words will be [{ text: redis, value: 1}, { text: is, value: 2}]
 
   await Promise.all(
     words.map(async (word) => {
       await redis.zadd(
-        `room:${topicName}`,
+        `room:${topic}`,
         { incr: true },
         { member: word.text, score: word.value }
       );
     })
   );
 
-  await redis.incr("served-requests");
+  await redis.incr("served-request");
 
-  await redis.publish(`room:${topicName}`, words);
+  console.log('pub')
+  console.log(words)
+  await redis.publish(`room:${topic}`, words);
 };

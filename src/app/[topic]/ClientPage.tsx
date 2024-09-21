@@ -25,11 +25,13 @@ const ClientPage = ({ topicName, initialData }: ClientPageProps) => {
   const [input, setInput] = useState<string>("");
 
   useEffect(() => {
-    socket.emit("join-room", `room:${topicName}`);
+    socket.emit("join-room", `room:${topicName}`); //Used to send an event from the client to the server or vice versa
   }, [topicName]);
 
   useEffect(() => {
     socket.on("room-update", (message: string) => {
+
+      console.log("room-updateroom-updateroom-updateroom-update")
       const data = JSON.parse(message) as {
         text: string;
         value: number;
@@ -124,7 +126,7 @@ const ClientPage = ({ topicName, initialData }: ClientPageProps) => {
             />
             <Button
               disabled={isPending}
-              onClick={() => mutate({ comment: input, topicName: topicName })}
+              onClick={() => mutate({ comment: input, topic: topicName })}
             >
               Share
             </Button>
